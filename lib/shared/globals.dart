@@ -9,3 +9,4 @@ abstract class CustomColors {
 
 const String BOOKMARK_LOCAL_STRAGE_KEY = 'bookmark';
 const String BOOKMARK_TITLE = 'ブックマーク一覧';
+const String RESIST_BOOKMARK_MODAL_TITLE = 'ブックマーク登録';
