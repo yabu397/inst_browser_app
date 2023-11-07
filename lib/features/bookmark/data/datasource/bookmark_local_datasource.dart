@@ -33,7 +33,6 @@ class BookmarkLocalDatasource extends BookmarkDataSource {
         ),
       );
     }
-    print(results);
     List<Bookmark> bookmarkList = results
         .map((result) => Bookmark(
             id: result[BookmarkColumns.id].toString(),

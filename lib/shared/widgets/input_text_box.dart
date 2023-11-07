@@ -16,11 +16,7 @@ class InputTextBox extends StatelessWidget {
             width: double.infinity,
             child: Text(
               title,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: Size.labelSize,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Style.boldStyle.copyWith(fontSize: Size.labelSize),
             ),
           ),
           TextField(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/shared/globals.dart';
 import 'package:flutter_project/features/bookmark/presentation/providers/bookmark_state_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -7,13 +8,33 @@ class BookmarkList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(bookmarkNotifierProvider);
+    final height = MediaQuery.of(context).size.height;
     return ListView.builder(
       itemCount: state.bookmarkList.length,
       itemBuilder: (context, index) {
-        final myModel = state.bookmarkList[index];
-        return ListTile(
-          title: Text(myModel.title ?? ''),
-        );
+        final bookmark = state.bookmarkList[index];
+        return Card(
+            child: SizedBox(
+          height: height * 0.1,
+          child: Padding(
+            padding: Size.defaultInsets,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                      child: Text(
+                    bookmark.title ?? '',
+                    style: Style.boldStyle.copyWith(fontSize: Size.labelSize),
+                  )),
+                  Expanded(
+                      child: Text(
+                    bookmark.url ?? '',
+                    style: const TextStyle(fontSize: Size.textSize),
+                  ))
+                ]),
+          ),
+        ));
       },
     );
   }
