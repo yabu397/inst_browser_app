@@ -10,3 +10,10 @@ abstract class CustomColors {
 const String BOOKMARK_LOCAL_STRAGE_KEY = 'bookmark';
 const String BOOKMARK_TITLE = 'ブックマーク一覧';
 const String RESIST_BOOKMARK_MODAL_TITLE = 'ブックマーク登録';
+
+abstract class Size {
+  static const double titleSize = 24.0;
+  static const double labelSize = 20.0;
+  static const EdgeInsets defaultInsets = EdgeInsets.all(12.0);
+  static const double paddingSize = 10.0;
+}

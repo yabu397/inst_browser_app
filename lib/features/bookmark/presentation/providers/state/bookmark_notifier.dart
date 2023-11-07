@@ -12,12 +12,40 @@ class BookmarkNotifier extends StateNotifier<BookmarkState> {
     this.bookmarkRepository,
   ) : super(const BookmarkState.initial());
 
+  Future<void> setTitle(String value) async {
+    state = state.copyWith(
+      title: value,
+    );
+  }
+
+  Future<void> setUrl(String value) async {
+    state = state.copyWith(
+      url: value,
+    );
+  }
+
+  Future<void> resetState() async {
+    state = state.copyWith(
+      id: null,
+      title: null,
+      url: null,
+    );
+  }
+
+  Future<void> insertBookmark(Bookmark bookmark) async {
+    await bookmarkRepository.insertBookmark(bookmark);
+  }
+
   Future<void> fetchBookmarks() async {
     final response = await bookmarkRepository.fetchBookmarks();
     updateStateFromResponse(response);
   }
 
-  void updateStateFromResponse(Either<AppException, Bookmark> response) {
-    response.fold((failure) {}, (data) {});
+  void updateStateFromResponse(Either<AppException, List<Bookmark>> response) {
+    response.fold((failure) {}, (data) {
+      state = state.copyWith(
+        bookmarkList: data,
+      );
+    });
   }
 }

@@ -10,22 +10,12 @@ class BookmarkRepositoryImpl extends BookmarkRepository {
   final BookmarkDataSource dataSource;
 
   @override
-  Future<bool> deleteBookmark() {
-    return dataSource.deleteBookmark();
-  }
-
-  @override
-  Future<Either<AppException, Bookmark>> fetchBookmarks() {
+  Future<Either<AppException, List<Bookmark>>> fetchBookmarks() {
     return dataSource.fetchBookmarks();
   }
 
   @override
-  Future<bool> saveBookmark({required Bookmark bookmark}) {
-    return dataSource.saveBookmark(bookmark: bookmark);
-  }
-
-  @override
-  Future<bool> hasBookmark() {
-    return dataSource.hasBookmark();
+  Future<int> insertBookmark(Bookmark bookmark) {
+    return dataSource.insertBookmark(bookmark);
   }
 }
