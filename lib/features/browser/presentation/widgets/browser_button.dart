@@ -20,7 +20,7 @@ class BrowserButton extends StatelessWidget {
           onPressed: onPressed,
           child: Text(
             text ?? '',
-            style: Style.boldStyle.copyWith(fontSize: Size.labelSize),
+            style: Style.boldStyle.copyWith(fontSize: Sizing.labelSize),
           ),
         ),
       ),

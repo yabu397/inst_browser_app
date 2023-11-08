@@ -18,4 +18,9 @@ class BookmarkRepositoryImpl extends BookmarkRepository {
   Future<int> insertBookmark(Bookmark bookmark) {
     return dataSource.insertBookmark(bookmark);
   }
+
+  @override
+  Future<void> deleteBookmark(Bookmark bookmark) {
+    return dataSource.deleteBookmark(bookmark);
+  }
 }

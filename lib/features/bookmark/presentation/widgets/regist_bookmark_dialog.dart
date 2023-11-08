@@ -19,13 +19,13 @@ class _RegistBookmarkModalState extends ConsumerState<RegistBookmarkModal> {
     final notifier = ref.read(bookmarkNotifierProvider.notifier);
     return Dialog(
       child: Padding(
-        padding: Size.defaultInsets,
+        padding: Sizing.defaultInsets,
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           const Text(
             RESIST_BOOKMARK_MODAL_TITLE,
             style: TextStyle(
               color: Colors.black,
-              fontSize: Size.titleSize,
+              fontSize: Sizing.titleSize,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -39,8 +39,8 @@ class _RegistBookmarkModalState extends ConsumerState<RegistBookmarkModal> {
           ),
           Padding(
             padding: const EdgeInsets.only(
-              top: Size.paddingSize,
-              bottom: Size.paddingSize,
+              top: Sizing.paddingSize,
+              bottom: Sizing.paddingSize,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

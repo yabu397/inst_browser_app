@@ -12,7 +12,7 @@ const String BOOKMARK_TITLE = 'ブックマーク一覧';
 const String RESIST_BOOKMARK_MODAL_TITLE = 'ブックマーク登録';
 const String BOOKMARK_DEFAULT_TITLE = 'タイトル';
 
-abstract class Size {
+abstract class Sizing {
   static const double titleSize = 24.0;
   static const double labelSize = 20.0;
   static const double textSize = 16.0;

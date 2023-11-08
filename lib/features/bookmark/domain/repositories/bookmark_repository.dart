@@ -5,4 +5,5 @@ import 'package:flutter_project/shared/models/bookmark_model.dart';
 abstract class BookmarkRepository {
   Future<Either<AppException, List<Bookmark>>> fetchBookmarks();
   Future<int> insertBookmark(Bookmark bookmark);
+  Future<void> deleteBookmark(Bookmark bookmark);
 }

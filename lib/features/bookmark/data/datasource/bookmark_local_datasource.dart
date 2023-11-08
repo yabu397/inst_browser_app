@@ -8,6 +8,7 @@ import 'package:sqflite/sqflite.dart';
 abstract class BookmarkDataSource {
   Future<Either<AppException, List<Bookmark>>> fetchBookmarks();
   Future<int> insertBookmark(Bookmark bookmark);
+  Future<void> deleteBookmark(Bookmark bookmark);
 }
 
 class BookmarkColumns {
@@ -54,5 +55,12 @@ class BookmarkLocalDatasource extends BookmarkDataSource {
       BookmarkColumns.url: bookmark.url,
     };
     return await db!.insert(BookmarkLocalDBService.table, row);
+  }
+
+  @override
+  Future<void> deleteBookmark(Bookmark bookmark) async {
+    final Database? db = await localDB.database;
+    await db!.delete(BookmarkLocalDBService.table,
+        where: "id = ?", whereArgs: [bookmark.id]);
   }
 }
