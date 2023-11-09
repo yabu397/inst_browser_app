@@ -25,7 +25,7 @@
     "maxBookmark": "'最大登録件数{count}件を超える登録はできません'",
     "@maxBookmark": {
         "placeholders": {
-            "count": {"type": "Int"}
+            "count": {"type": "int"}
         }
     }
 }
