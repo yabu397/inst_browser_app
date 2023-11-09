@@ -13,8 +13,8 @@
     "titleLabel": "タイトル",
     "urlLabel": "URL",
 
-    "goBackButton": "キャンセル",
-    "goForwardButton": "キャンセル",
+    "goBackButton": "< 戻る",
+    "goForwardButton": "進む >",
     
     "invalidUrl": "{url}は無効なURLです。",
     "@invalidUrl": {
