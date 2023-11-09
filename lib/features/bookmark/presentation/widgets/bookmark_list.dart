@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_project/features/bookmark/presentation/widgets/bookmark_form_dialog.dart';
 import 'package:flutter_project/features/browser/presentation/providers/browser_state_provider.dart';
 import 'package:flutter_project/shared/globals.dart';
 import 'package:flutter_project/features/bookmark/presentation/providers/bookmark_state_provider.dart';
@@ -35,7 +36,7 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
       items: <PopupMenuEntry>[
         PopupMenuItem(
           value: 1,
-          child: Text(L10n.of(context).update),
+          child: Text(L10n.of(context).edit),
         ),
         PopupMenuItem(
           value: 2,
@@ -44,6 +45,13 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
       ],
     ).then((value) async {
       if (value == 1) {
+        await showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return const BookmarkFormDialog(
+                mode: Mode.update,
+              );
+            });
       } else if (value == 2) {
         await notifier.deleteBookmark(bookmark);
         await notifier.fetchBookmarks();

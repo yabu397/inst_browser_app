@@ -9,6 +9,7 @@ abstract class BookmarkDataSource {
   Future<Either<AppException, List<Bookmark>>> fetchBookmarks();
   Future<int> insertBookmark(Bookmark bookmark);
   Future<void> deleteBookmark(Bookmark bookmark);
+  Future<void> updateBookmark(Bookmark bookmark);
 }
 
 class BookmarkColumns {
@@ -61,6 +62,18 @@ class BookmarkLocalDatasource extends BookmarkDataSource {
   Future<void> deleteBookmark(Bookmark bookmark) async {
     final Database? db = await localDB.database;
     await db!.delete(BookmarkLocalDBService.table,
+        where: "id = ?", whereArgs: [bookmark.id]);
+  }
+
+  @override
+  Future<void> updateBookmark(Bookmark bookmark) async {
+    final Database? db = await localDB.database;
+    Map<String, dynamic> row = {
+      BookmarkColumns.id: bookmark.id,
+      BookmarkColumns.title: bookmark.title,
+      BookmarkColumns.url: bookmark.url,
+    };
+    await db!.update(BookmarkLocalDBService.table, row,
         where: "id = ?", whereArgs: [bookmark.id]);
   }
 }

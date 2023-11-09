@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_project/features/bookmark/presentation/widgets/bookmark_list.dart';
-import 'package:flutter_project/features/bookmark/presentation/widgets/regist_bookmark_dialog.dart';
+import 'package:flutter_project/features/bookmark/presentation/widgets/bookmark_form_dialog.dart';
 import 'package:flutter_project/shared/globals.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,11 +13,13 @@ class BookmarkScreen extends ConsumerStatefulWidget {
 }
 
 class _BookmarkScreenState extends ConsumerState<BookmarkScreen> {
-  void _openRegistBookmarkModal() async {
+  void _openBookmarkFormDialog() async {
     await showDialog(
         context: context,
         builder: (BuildContext context) {
-          return const RegistBookmarkModal();
+          return const BookmarkFormDialog(
+            mode: Mode.regist,
+          );
         });
   }
 
@@ -25,7 +27,7 @@ class _BookmarkScreenState extends ConsumerState<BookmarkScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context).registBookmarkModalTitle,
+        title: Text(L10n.of(context).bookmarkListTitle,
             style: Style.boldStyle.copyWith(fontSize: Sizing.titleSize)),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -33,8 +35,8 @@ class _BookmarkScreenState extends ConsumerState<BookmarkScreen> {
       ),
       body: const BookmarkList(),
       floatingActionButton: FloatingActionButton(
-        onPressed: _openRegistBookmarkModal,
-        tooltip: L10n.of(context).registBookmarkModalTitle,
+        onPressed: _openBookmarkFormDialog,
+        tooltip: L10n.of(context).bookmarkRegistDialogTitle,
         child: const Icon(Icons.add),
       ),
     );

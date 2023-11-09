@@ -6,4 +6,5 @@ abstract class BookmarkRepository {
   Future<Either<AppException, List<Bookmark>>> fetchBookmarks();
   Future<int> insertBookmark(Bookmark bookmark);
   Future<void> deleteBookmark(Bookmark bookmark);
+  Future<void> updateBookmark(Bookmark bookmark);
 }

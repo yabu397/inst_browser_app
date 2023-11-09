@@ -6,15 +6,15 @@ import 'package:flutter_project/shared/widgets/cst_snack_bar.dart';
 import 'package:flutter_project/shared/widgets/cst_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class RegistBookmarkModal extends ConsumerStatefulWidget {
-  const RegistBookmarkModal({Key? key}) : super(key: key);
+class BookmarkFormDialog extends ConsumerStatefulWidget {
+  const BookmarkFormDialog({Key? key, required this.mode}) : super(key: key);
 
+  final String mode;
   @override
-  ConsumerState<RegistBookmarkModal> createState() =>
-      _RegistBookmarkModalState();
+  ConsumerState<BookmarkFormDialog> createState() => _BookmarkFormDialogState();
 }
 
-class _RegistBookmarkModalState extends ConsumerState<RegistBookmarkModal> {
+class _BookmarkFormDialogState extends ConsumerState<BookmarkFormDialog> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(bookmarkNotifierProvider);
@@ -23,7 +23,12 @@ class _RegistBookmarkModalState extends ConsumerState<RegistBookmarkModal> {
       child: Padding(
         padding: Sizing.defaultInsets,
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Text(L10n.of(context).registBookmarkModalTitle,
+          Text(
+              switch (widget.mode) {
+                Mode.regist => L10n.of(context).bookmarkRegistDialogTitle,
+                Mode.update => L10n.of(context).bookmarkEditDialogTitle,
+                _ => ''
+              },
               style: Style.boldStyle.copyWith(fontSize: Sizing.titleSize)),
           CstTextField(
             label: L10n.of(context).titleLabel,
@@ -65,19 +70,34 @@ class _RegistBookmarkModalState extends ConsumerState<RegistBookmarkModal> {
                         backgroundColor: Colors.blueAccent,
                       ),
                       onPressed: () {
-                        if (state.bookmarkList.length >=
-                            Limits.maxBookmarkCount) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              CstSnackBar(context,
-                                  text: L10n.of(context)
-                                      .maxBookmark(Limits.maxBookmarkCount)));
-                        } else {
-                          notifier
-                              .insertBookmark(state.bookmark)
-                              .then((value) => notifier.fetchBookmarks());
+                        switch (widget.mode) {
+                          case Mode.regist:
+                            if (state.bookmarkList.length >=
+                                Limits.maxBookmarkCount) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  CstSnackBar(context,
+                                      text: L10n.of(context).maxBookmark(
+                                          Limits.maxBookmarkCount)));
+                              break;
+                            }
+                            notifier
+                                .insertBookmark(state.bookmark)
+                                .then((value) => notifier.fetchBookmarks());
+                            break;
+                          case Mode.update:
+                            notifier
+                                .updateBookmark(state.bookmark)
+                                .then((value) => notifier.fetchBookmarks());
+                            break;
                         }
                       },
-                      child: Text(L10n.of(context).regist),
+                      child: Text(
+                        switch (widget.mode) {
+                          Mode.regist => L10n.of(context).regist,
+                          Mode.update => L10n.of(context).update,
+                          _ => ''
+                        },
+                      ),
                     ),
                   ),
                 ),

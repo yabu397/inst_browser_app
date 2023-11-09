@@ -45,6 +45,10 @@ class BookmarkNotifier extends StateNotifier<BookmarkState> {
     await bookmarkRepository.deleteBookmark(bookmark);
   }
 
+  Future<void> updateBookmark(Bookmark bookmark) async {
+    await bookmarkRepository.updateBookmark(bookmark);
+  }
+
   void updateStateFromResponse(Either<AppException, List<Bookmark>> response) {
     response.fold((failure) {}, (data) {
       state = state.copyWith(

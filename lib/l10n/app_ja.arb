@@ -1,15 +1,17 @@
 {
     "@@locale": "ja",
     
-    "update": "編集",
+    "edit": "編集",
     "delete": "削除",
     "regist": "登録",
+    "update": "更新",
     "cancel": "キャンセル",
     "reload": "更新",
     "end": "終了",
     
     "bookmarkListTitle": "ブックマーク一覧",
-    "registBookmarkModalTitle": "ブックマーク登録",
+    "bookmarkRegistDialogTitle": "ブックマーク登録",
+    "bookmarkEditDialogTitle": "ブックマーク編集",
     "titleLabel": "タイトル",
     "urlLabel": "URL",
 

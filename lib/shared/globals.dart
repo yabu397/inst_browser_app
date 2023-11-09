@@ -14,6 +14,11 @@ const String BOOKMARK_TABLE_NAME = 'bookmarks';
 const String BOOKMARK_LOCAL_STRAGE_KEY = 'bookmark';
 const String BOOKMARK_DEFAULT_TITLE = 'タイトル';
 
+class Mode {
+  static const String regist = 'REGIST';
+  static const String update = 'UPDATE';
+}
+
 class Locations {
   static const Location home = Location(path: '/', name: 'bookmark');
   static const Location browser = Location(path: '/browser', name: 'browser');
