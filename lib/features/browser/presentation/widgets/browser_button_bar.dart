@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_project/features/browser/presentation/providers/browser_state_provider.dart';
 import 'package:flutter_project/features/browser/presentation/widgets/browser_button.dart';
+import 'package:flutter_project/shared/globals.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,10 +18,17 @@ class _BrowserButtonBarState extends ConsumerState<BrowserButtonBar> {
   Widget build(BuildContext context) {
     final notifier = ref.read(browserkNotifierProvider.notifier);
     return Row(children: [
-      BrowserButton(text: '< 戻る', onPressed: () => {notifier.goBack()}),
-      BrowserButton(text: '進む >', onPressed: () => {notifier.goForward()}),
-      BrowserButton(text: '更新', onPressed: () => {notifier.reload()}),
-      BrowserButton(text: '終了', onPressed: () => {context.go('/')})
+      BrowserButton(
+          text: L10n.of(context).goBackButton,
+          onPressed: () => {notifier.goBack()}),
+      BrowserButton(
+          text: L10n.of(context).goForwardButton,
+          onPressed: () => {notifier.goForward()}),
+      BrowserButton(
+          text: L10n.of(context).reload, onPressed: () => {notifier.reload()}),
+      BrowserButton(
+          text: L10n.of(context).end,
+          onPressed: () => {context.go(Locations.home.path)})
     ]);
   }
 }

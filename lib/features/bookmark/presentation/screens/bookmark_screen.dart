@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_project/features/bookmark/presentation/widgets/bookmark_list.dart';
 import 'package:flutter_project/features/bookmark/presentation/widgets/regist_bookmark_dialog.dart';
 import 'package:flutter_project/shared/globals.dart';
@@ -24,14 +25,8 @@ class _BookmarkScreenState extends ConsumerState<BookmarkScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          BOOKMARK_TITLE,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: Text(L10n.of(context).registBookmarkModalTitle,
+            style: Style.boldStyle.copyWith(fontSize: Sizing.titleSize)),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 1,
@@ -39,7 +34,7 @@ class _BookmarkScreenState extends ConsumerState<BookmarkScreen> {
       body: const BookmarkList(),
       floatingActionButton: FloatingActionButton(
         onPressed: _openRegistBookmarkModal,
-        tooltip: 'ブックマーク登録',
+        tooltip: L10n.of(context).registBookmarkModalTitle,
         child: const Icon(Icons.add),
       ),
     );

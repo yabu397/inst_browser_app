@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_project/features/bookmark/presentation/providers/bookmark_state_provider.dart';
 import 'package:flutter_project/shared/globals.dart';
+import 'package:flutter_project/shared/widgets/cst_snack_bar.dart';
 import 'package:flutter_project/shared/widgets/cst_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,20 +23,14 @@ class _RegistBookmarkModalState extends ConsumerState<RegistBookmarkModal> {
       child: Padding(
         padding: Sizing.defaultInsets,
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          const Text(
-            RESIST_BOOKMARK_MODAL_TITLE,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: Sizing.titleSize,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Text(L10n.of(context).registBookmarkModalTitle,
+              style: Style.boldStyle.copyWith(fontSize: Sizing.titleSize)),
           CstTextField(
-            label: 'タイトル',
+            label: L10n.of(context).titleLabel,
             onSubmitted: (String value) => notifier.setTitle(value),
           ),
           CstTextField(
-            label: 'URL',
+            label: L10n.of(context).urlLabel,
             onSubmitted: (String value) => notifier.setUrl(value),
           ),
           Padding(
@@ -54,11 +50,9 @@ class _RegistBookmarkModalState extends ConsumerState<RegistBookmarkModal> {
                         backgroundColor: Colors.orange,
                       ),
                       onPressed: () {
-                        notifier
-                            .fetchBookmarks()
-                            .then((value) => print(state.bookmarkList));
+                        notifier.fetchBookmarks();
                       },
-                      child: const Text('キャンセル'),
+                      child: Text(L10n.of(context).cancel),
                     ),
                   ),
                 ),
@@ -71,12 +65,18 @@ class _RegistBookmarkModalState extends ConsumerState<RegistBookmarkModal> {
                         backgroundColor: Colors.blueAccent,
                       ),
                       onPressed: () {
-                        notifier.insertBookmark(state.bookmark).then((value) =>
-                            notifier
-                                .fetchBookmarks()
-                                .then((value) => print(state.bookmarkList)));
+                        if (state.bookmarkList.length >=
+                            Limits.maxBookmarkCount) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              CstSnackBar(context,
+                                  text: L10n.of(context)
+                                      .maxBookmark(Limits.maxBookmarkCount)));
+                        }
+                        notifier
+                            .insertBookmark(state.bookmark)
+                            .then((value) => notifier.fetchBookmarks());
                       },
-                      child: const Text('登録'),
+                      child: Text(L10n.of(context).regest),
                     ),
                   ),
                 ),

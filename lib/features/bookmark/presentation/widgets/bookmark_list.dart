@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_project/features/browser/presentation/providers/browser_state_provider.dart';
 import 'package:flutter_project/shared/globals.dart';
 import 'package:flutter_project/features/bookmark/presentation/providers/bookmark_state_provider.dart';
@@ -18,6 +19,7 @@ class BookmarkList extends ConsumerStatefulWidget {
 
 class _BookmarkListState extends ConsumerState<BookmarkList> {
   late RelativeRect position;
+
   void _handleTapDown(TapDownDetails details) {
     setState(() {
       position = RelativeRect.fromLTRB(
@@ -31,18 +33,17 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
       context: context,
       position: position,
       items: <PopupMenuEntry>[
-        const PopupMenuItem(
+        PopupMenuItem(
           value: 1,
-          child: Text('編集'),
+          child: Text(L10n.of(context).update),
         ),
-        const PopupMenuItem(
+        PopupMenuItem(
           value: 2,
-          child: Text('削除'),
+          child: Text(L10n.of(context).delete),
         ),
       ],
     ).then((value) async {
       if (value == 1) {
-        print('メニューアイテム 1 が選択されました');
       } else if (value == 2) {
         await notifier.deleteBookmark(bookmark);
         await notifier.fetchBookmarks();
@@ -73,10 +74,10 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
                   ..loadRequest(
                     Uri.parse(bookmark.url ?? ''),
                   ));
-                context.go('/browser');
+                context.go(Locations.browser.path);
               } catch (e) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    CstSnackBar(context, text: '${bookmark.url}は無効なURLです。'));
+                ScaffoldMessenger.of(context).showSnackBar(CstSnackBar(context,
+                    text: L10n.of(context).invalidUrl(bookmark.url ?? '')));
               }
             },
             onLongPress: () {

@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 import 'package:flutter/material.dart';
+import 'package:flutter_project/shared/models/location_model.dart';
 
 abstract class CustomColors {
   static const Color rectangle3600 = Color(0xFFE2F6C7);
@@ -7,10 +8,16 @@ abstract class CustomColors {
   static const Color rectangle3602 = Color(0xFFFFD4E2);
 }
 
+const String APP_TITLE = 'Inst Browser App';
+const String DATABASE_NAME = 'local_storage.db';
+const String BOOKMARK_TABLE_NAME = 'bookmarks';
 const String BOOKMARK_LOCAL_STRAGE_KEY = 'bookmark';
-const String BOOKMARK_TITLE = 'ブックマーク一覧';
-const String RESIST_BOOKMARK_MODAL_TITLE = 'ブックマーク登録';
 const String BOOKMARK_DEFAULT_TITLE = 'タイトル';
+
+class Locations {
+  static const Location home = Location(path: '/', name: 'bookmark');
+  static const Location browser = Location(path: '/browser', name: 'browser');
+}
 
 abstract class Sizing {
   static const double titleSize = 24.0;
@@ -25,4 +32,9 @@ class Style {
     color: Colors.black,
     fontWeight: FontWeight.bold,
   );
+}
+
+class Limits {
+  static const int maxUrlLength = 100;
+  static const int maxBookmarkCount = 20;
 }

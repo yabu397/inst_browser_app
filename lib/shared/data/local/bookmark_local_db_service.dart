@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter_project/shared/globals.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -14,9 +15,9 @@ class BookmarkLocalDBService {
     return _database;
   }
 
-  final String _dbName = 'local_storage.db';
+  final String _dbName = DATABASE_NAME;
   final int _databaseVersion = 1;
-  static const table = 'bookmarks';
+  static const table = BOOKMARK_TABLE_NAME;
   _initDatabase() async {
     String databasesPath = await getDatabasesPath();
     String dbPath = join(databasesPath, _dbName);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/router/router.dart';
+import 'package:flutter_project/shared/globals.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MyApp extends ConsumerWidget {
@@ -10,7 +11,7 @@ class MyApp extends ConsumerWidget {
       routerDelegate: goRouter.routerDelegate,
       routeInformationParser: goRouter.routeInformationParser,
       routeInformationProvider: goRouter.routeInformationProvider,
-      title: 'Inst Browser App',
+      title: APP_TITLE,
     );
   }
 }

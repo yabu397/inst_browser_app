@@ -1,0 +1,31 @@
+{
+    "@@locale": "ja",
+    
+    "update": "編集",
+    "delete": "削除",
+    "regest": "登録",
+    "cancel": "キャンセル",
+    "reload": "編集",
+    "end": "終了",
+    
+    "bookmarkListTitle": "ブックマーク一覧",
+    "registBookmarkModalTitle": "ブックマーク登録",
+    "titleLabel": "タイトル",
+    "urlLabel": "URL",
+
+    "goBackButton": "キャンセル",
+    "goForwardButton": "キャンセル",
+    
+    "invalidUrl": "{url}は無効なURLです。",
+    "@invalidUrl": {
+        "placeholders": {
+            "url": {"type": "String"}
+        }
+    },
+    "maxBookmark": "'最大登録件数{count}件を超える登録はできません'",
+    "@maxBookmark": {
+        "placeholders": {
+            "count": {"type": "Int"}
+        }
+    }
+}
