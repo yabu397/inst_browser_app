@@ -3,6 +3,8 @@ import 'package:flutter_project/features/browser/presentation/providers/browser_
 import 'package:flutter_project/shared/globals.dart';
 import 'package:flutter_project/features/bookmark/presentation/providers/bookmark_state_provider.dart';
 import 'package:flutter_project/shared/models/bookmark_model.dart';
+import 'package:flutter_project/shared/widgets/cst_snack_bar.dart';
+import 'package:flutter_project/shared/widgets/cst_text_box.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -59,16 +61,23 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
         final bookmark = state.bookmarkList[index];
         return Card(
           clipBehavior: Clip.hardEdge,
+          margin: const EdgeInsets.all(0.0),
           shape: const RoundedRectangleBorder(
             side: BorderSide(color: Colors.black12),
           ),
           child: InkWell(
             onTap: () {
-              notifier.setController(WebViewController()
-                ..loadRequest(
-                  Uri.parse(bookmark.url ?? ''),
-                ));
-              context.go('/browser');
+              try {
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                notifier.setController(WebViewController()
+                  ..loadRequest(
+                    Uri.parse(bookmark.url ?? ''),
+                  ));
+                context.go('/browser');
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    CstSnackBar(context, text: '${bookmark.url}は無効なURLです。'));
+              }
             },
             onLongPress: () {
               _showMenu(context, bookmark);
@@ -82,19 +91,14 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: Text(
-                          bookmark.title ?? '',
-                          style: Style.boldStyle
-                              .copyWith(fontSize: Sizing.labelSize),
-                        ),
-                      ),
-                      Expanded(
-                        child: Text(
-                          bookmark.url ?? '',
-                          style: const TextStyle(fontSize: Sizing.textSize),
-                        ),
-                      )
+                      CstTextBox(
+                          text: bookmark.title,
+                          textStyle: Style.boldStyle
+                              .copyWith(fontSize: Sizing.labelSize)),
+                      CstTextBox(
+                          text: bookmark.url,
+                          textStyle:
+                              const TextStyle(fontSize: Sizing.textSize)),
                     ]),
               ),
             ),

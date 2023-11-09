@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/shared/globals.dart';
 
-class InputTextBox extends StatelessWidget {
-  const InputTextBox({Key? key, required this.title, required this.onSubmitted})
+class CstTextField extends StatelessWidget {
+  const CstTextField({Key? key, required this.label, required this.onSubmitted})
       : super(key: key);
 
-  final String title;
+  final String label;
   final Function(String) onSubmitted;
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class InputTextBox extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: Text(
-              title,
+              label,
               style: Style.boldStyle.copyWith(fontSize: Sizing.labelSize),
             ),
           ),

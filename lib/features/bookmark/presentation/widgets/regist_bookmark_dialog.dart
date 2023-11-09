@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/features/bookmark/presentation/providers/bookmark_state_provider.dart';
 import 'package:flutter_project/shared/globals.dart';
-import 'package:flutter_project/shared/widgets/input_text_box.dart';
+import 'package:flutter_project/shared/widgets/cst_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RegistBookmarkModal extends ConsumerStatefulWidget {
@@ -29,12 +29,12 @@ class _RegistBookmarkModalState extends ConsumerState<RegistBookmarkModal> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          InputTextBox(
-            title: 'タイトル',
+          CstTextField(
+            label: 'タイトル',
             onSubmitted: (String value) => notifier.setTitle(value),
           ),
-          InputTextBox(
-            title: 'URL',
+          CstTextField(
+            label: 'URL',
             onSubmitted: (String value) => notifier.setUrl(value),
           ),
           Padding(
