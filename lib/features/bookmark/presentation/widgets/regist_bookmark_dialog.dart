@@ -71,12 +71,13 @@ class _RegistBookmarkModalState extends ConsumerState<RegistBookmarkModal> {
                               CstSnackBar(context,
                                   text: L10n.of(context)
                                       .maxBookmark(Limits.maxBookmarkCount)));
+                        } else {
+                          notifier
+                              .insertBookmark(state.bookmark)
+                              .then((value) => notifier.fetchBookmarks());
                         }
-                        notifier
-                            .insertBookmark(state.bookmark)
-                            .then((value) => notifier.fetchBookmarks());
                       },
-                      child: Text(L10n.of(context).regest),
+                      child: Text(L10n.of(context).regist),
                     ),
                   ),
                 ),

@@ -3,9 +3,9 @@
     
     "update": "編集",
     "delete": "削除",
-    "regest": "登録",
+    "regist": "登録",
     "cancel": "キャンセル",
-    "reload": "編集",
+    "reload": "更新",
     "end": "終了",
     
     "bookmarkListTitle": "ブックマーク一覧",
