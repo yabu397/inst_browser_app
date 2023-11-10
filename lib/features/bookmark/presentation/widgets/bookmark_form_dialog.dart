@@ -100,16 +100,26 @@ class _BookmarkFormDialogState extends ConsumerState<BookmarkFormDialog> {
                               if (_formKey.currentState!.validate()) {
                                 notifier
                                     .insertBookmark(state.bookmark)
-                                    .then((value) => notifier.fetchBookmarks());
+                                    .then((value) {
+                                  notifier.fetchBookmarks();
+                                });
                                 Navigator.of(context).pop();
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(CstSnackBar(
+                                  context,
+                                  text: L10n.of(context).successfulRegistration(
+                                      state.bookmark.title!),
+                                ));
                               }
                               break;
                             case Mode.update:
                               if (_formKey.currentState!.validate()) {
                                 notifier
                                     .updateBookmark(state.bookmark)
-                                    .then((value) => notifier.fetchBookmarks());
-                                Navigator.of(context).pop();
+                                    .then((value) {
+                                  notifier.fetchBookmarks();
+                                  Navigator.of(context).pop();
+                                });
                               }
                               break;
                           }

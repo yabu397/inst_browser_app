@@ -18,7 +18,7 @@
     "goBackButton": "< 戻る",
     "goForwardButton": "進む >",
     
-    "invalidUrl": "{url}は無効なURLです。",
+    "invalidUrl": "{url}は無効なURLです",
     "@invalidUrl": {
         "placeholders": {
             "url": {"type": "String"}
@@ -30,6 +30,18 @@
             "count": {"type": "int"}
         }
     },
-    "inputValidUrl": "URL形式で入力してください。",
-    "requiredText": "必須項目です。"
+    "inputValidUrl": "URL形式で入力してください",
+    "requiredText": "必須項目です",
+    "successfulRegistration": "{title}を登録に成功しました",
+    "@successfulRegistration": {
+        "placeholders": {
+            "title": {"type": "String"}
+        }
+    },
+    "failureRegistration": "{title}の登録に失敗しました",
+    "@failureRegistration": {
+        "placeholders": {
+            "title": {"type": "String"}
+        }
+    }
 }
