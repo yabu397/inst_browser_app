@@ -71,7 +71,8 @@ class _BookmarkFormDialogState extends ConsumerState<BookmarkFormDialog> {
                           backgroundColor: Colors.orange,
                         ),
                         onPressed: () {
-                          notifier.fetchBookmarks();
+                          notifier.resetState();
+                          Navigator.of(context).pop();
                         },
                         child: Text(L10n.of(context).cancel),
                       ),
@@ -100,6 +101,7 @@ class _BookmarkFormDialogState extends ConsumerState<BookmarkFormDialog> {
                                 notifier
                                     .insertBookmark(state.bookmark)
                                     .then((value) => notifier.fetchBookmarks());
+                                Navigator.of(context).pop();
                               }
                               break;
                             case Mode.update:
@@ -107,6 +109,7 @@ class _BookmarkFormDialogState extends ConsumerState<BookmarkFormDialog> {
                                 notifier
                                     .updateBookmark(state.bookmark)
                                     .then((value) => notifier.fetchBookmarks());
+                                Navigator.of(context).pop();
                               }
                               break;
                           }
