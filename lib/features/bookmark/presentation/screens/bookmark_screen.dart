@@ -3,21 +3,15 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_project/features/bookmark/presentation/widgets/bookmark_list.dart';
 import 'package:flutter_project/features/bookmark/presentation/widgets/bookmark_form_dialog.dart';
 import 'package:flutter_project/shared/globals.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class BookmarkScreen extends ConsumerStatefulWidget {
+class BookmarkScreen extends StatelessWidget {
   const BookmarkScreen({Key? key}) : super(key: key);
 
-  @override
-  ConsumerState<BookmarkScreen> createState() => _BookmarkScreenState();
-}
-
-class _BookmarkScreenState extends ConsumerState<BookmarkScreen> {
-  void _openBookmarkFormDialog() async {
+  void _openBookmarkFormDialog(BuildContext context) async {
     await showDialog(
         context: context,
         builder: (BuildContext context) {
-          return const BookmarkFormDialog(
+          return BookmarkFormDialog(
             mode: Mode.regist,
           );
         });
@@ -35,7 +29,7 @@ class _BookmarkScreenState extends ConsumerState<BookmarkScreen> {
       ),
       body: const BookmarkList(),
       floatingActionButton: FloatingActionButton(
-        onPressed: _openBookmarkFormDialog,
+        onPressed: () => _openBookmarkFormDialog(context),
         tooltip: L10n.of(context).bookmarkRegistDialogTitle,
         child: const Icon(Icons.add),
       ),

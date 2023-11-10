@@ -48,7 +48,7 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
         await showDialog(
             context: context,
             builder: (BuildContext context) {
-              return const BookmarkFormDialog(
+              return BookmarkFormDialog(
                 mode: Mode.update,
               );
             });
