@@ -4,15 +4,11 @@ import 'package:flutter_project/features/browser/presentation/widgets/browser_bu
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class BrowserScreen extends ConsumerStatefulWidget {
+class BrowserScreen extends ConsumerWidget {
   const BrowserScreen({Key? key}) : super(key: key);
-  @override
-  ConsumerState<BrowserScreen> createState() => _BrowserScreenState();
-}
 
-class _BrowserScreenState extends ConsumerState<BrowserScreen> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(browserkNotifierProvider);
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;

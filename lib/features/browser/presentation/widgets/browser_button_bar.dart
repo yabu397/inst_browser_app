@@ -6,16 +6,11 @@ import 'package:flutter_project/shared/globals.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class BrowserButtonBar extends ConsumerStatefulWidget {
+class BrowserButtonBar extends ConsumerWidget {
   const BrowserButtonBar({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<BrowserButtonBar> createState() => _BrowserButtonBarState();
-}
-
-class _BrowserButtonBarState extends ConsumerState<BrowserButtonBar> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(browserkNotifierProvider.notifier);
     return Row(children: [
       BrowserButton(
