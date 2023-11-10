@@ -24,7 +24,13 @@
             "url": {"type": "String"}
         }
     },
-    "maxBookmark": "'最大登録件数{count}件を超える登録はできません'",
+    "maxUrlLength": "{length}文字以下で入力してください",
+    "@maxUrlLength": {
+        "placeholders": {
+            "length": {"type": "int"}
+        }
+    },
+    "maxBookmark": "最大登録件数{count}件を超える登録はできません",
     "@maxBookmark": {
         "placeholders": {
             "count": {"type": "int"}
