@@ -24,6 +24,11 @@ class BookmarkNotifier extends StateNotifier<BookmarkState> {
     );
   }
 
+  Future<void> setBookmark(Bookmark bookmark) async {
+    state = state.copyWith(
+        id: bookmark.id, title: bookmark.title, url: bookmark.url);
+  }
+
   Future<void> resetState() async {
     state = state.copyWith(
       id: null,

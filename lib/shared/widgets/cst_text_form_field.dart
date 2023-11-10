@@ -3,9 +3,14 @@ import 'package:flutter_project/shared/globals.dart';
 
 class CstTextFormField extends StatelessWidget {
   const CstTextFormField(
-      {Key? key, required this.label, this.onChanged, this.validator})
+      {Key? key,
+      this.initialValue,
+      required this.label,
+      this.onChanged,
+      this.validator})
       : super(key: key);
 
+  final String? initialValue;
   final String label;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
@@ -22,6 +27,7 @@ class CstTextFormField extends StatelessWidget {
             ),
           ),
           TextFormField(
+            initialValue: initialValue,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               contentPadding: EdgeInsets.symmetric(

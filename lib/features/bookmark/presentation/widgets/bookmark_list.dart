@@ -45,6 +45,7 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
       ],
     ).then((value) async {
       if (value == 1) {
+        notifier.setBookmark(bookmark);
         await showDialog(
             context: context,
             builder: (BuildContext context) {

@@ -10,29 +10,33 @@ class BookmarkFormBdy extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.read(bookmarkNotifierProvider);
     final notifier = ref.read(bookmarkNotifierProvider.notifier);
     return Column(
       children: [
         CstTextFormField(
+          initialValue: state.bookmark.title,
           label: L10n.of(context).titleLabel,
           onChanged: (String value) => notifier.setTitle(value),
         ),
         CstTextFormField(
-            label: L10n.of(context).urlLabel,
-            onChanged: (String value) => notifier.setUrl(value),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return L10n.of(context).requiredText;
-              }
-              try {
-                WebViewController().loadRequest(
-                  Uri.parse(value),
-                );
-              } catch (e) {
-                return L10n.of(context).inputValidUrl;
-              }
-              return null;
-            }),
+          initialValue: state.bookmark.url,
+          label: L10n.of(context).urlLabel,
+          onChanged: (String value) => notifier.setUrl(value),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return L10n.of(context).requiredText;
+            }
+            try {
+              WebViewController().loadRequest(
+                Uri.parse(value),
+              );
+            } catch (e) {
+              return L10n.of(context).inputValidUrl;
+            }
+            return null;
+          },
+        ),
       ],
     );
   }
