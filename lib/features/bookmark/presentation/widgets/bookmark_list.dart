@@ -80,6 +80,10 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
               try {
                 ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 notifier.setController(WebViewController()
+                  ..setNavigationDelegate(
+                      NavigationDelegate(onUrlChange: (_) async {
+                    notifier.setCanState();
+                  }))
                   ..loadRequest(
                     Uri.parse(bookmark.url ?? ''),
                   ));

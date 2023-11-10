@@ -11,14 +11,15 @@ class BrowserButtonBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(browserkNotifierProvider);
     final notifier = ref.read(browserkNotifierProvider.notifier);
     return Row(children: [
       BrowserButton(
           text: L10n.of(context).goBackButton,
-          onPressed: () => {notifier.goBack()}),
+          onPressed: state.canGoBack ? () => {notifier.goBack()} : null),
       BrowserButton(
           text: L10n.of(context).goForwardButton,
-          onPressed: () => {notifier.goForward()}),
+          onPressed: state.canGoForward ? () => {notifier.goForward()} : null),
       BrowserButton(
           text: L10n.of(context).reload, onPressed: () => {notifier.reload()}),
       BrowserButton(

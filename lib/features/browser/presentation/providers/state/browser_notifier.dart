@@ -13,6 +13,13 @@ class BrowserNotifier extends StateNotifier<BrowserState> {
     );
   }
 
+  Future<void> setCanState() async {
+    state = state.copyWith(
+      canGoBack: await state.controller?.canGoBack() ?? false,
+      canGoForward: await state.controller?.canGoForward() ?? false,
+    );
+  }
+
   Future<void> goBack() async {
     state.controller?.goBack();
   }
