@@ -31,9 +31,9 @@ class BookmarkNotifier extends StateNotifier<BookmarkState> {
 
   Future<void> resetState() async {
     state = state.copyWith(
-      id: null,
-      title: null,
-      url: null,
+      id: '',
+      title: '',
+      url: '',
     );
   }
 
