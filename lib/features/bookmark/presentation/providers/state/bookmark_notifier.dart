@@ -40,9 +40,21 @@ class BookmarkNotifier extends StateNotifier<BookmarkState> {
   }
 
   Future<void> insertBookmark(Bookmark bookmark, BuildContext context) async {
-    await bookmarkRepository.insertBookmark(bookmark).then((response) async {
-      handleResponse(response, context);
+    final response = await bookmarkRepository.insertBookmark(bookmark);
+    response.fold((failure) {
+      ScaffoldMessenger.of(context).showSnackBar(CstSnackBar(
+        context,
+        text: L10n.of(context)
+            .failureRegistration(state.bookmark.title ?? failure.toString()),
+      ));
+    }, (sucsess) {
+      ScaffoldMessenger.of(context).showSnackBar(CstSnackBar(
+        context,
+        text: L10n.of(context)
+            .successfulRegistration(state.bookmark.title ?? sucsess.toString()),
+      ));
       fetchBookmarks(context);
+      resetState();
     });
   }
 
