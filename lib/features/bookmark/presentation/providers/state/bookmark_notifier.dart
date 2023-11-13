@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/features/bookmark/domain/repositories/bookmark_repository.dart';
 import 'package:flutter_project/features/bookmark/presentation/providers/state/bookmark_state.dart';
+import 'package:flutter_project/shared/globals.dart';
 import 'package:flutter_project/shared/models/bookmark_model.dart';
 import 'package:flutter_project/shared/widgets/cst_snack_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,8 +51,10 @@ class BookmarkNotifier extends StateNotifier<BookmarkState> {
     }, (sucsess) {
       ScaffoldMessenger.of(context).showSnackBar(CstSnackBar(
         context,
-        text: L10n.of(context)
-            .successfulRegistration(state.bookmark.title ?? sucsess.toString()),
+        text: L10n.of(context).successfulRegistration(
+            (state.bookmark.title == null || state.bookmark.title!.isEmpty)
+                ? BOOKMARK_DEFAULT_TITLE
+                : state.bookmark.title ?? BOOKMARK_DEFAULT_TITLE),
       ));
       fetchBookmarks(context);
       resetState();
