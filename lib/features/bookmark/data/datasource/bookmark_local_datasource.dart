@@ -11,12 +11,6 @@ abstract class BookmarkDataSource {
   Future<Either<Object, int>> updateBookmark(Bookmark bookmark);
 }
 
-class BookmarkColumns {
-  static String id = 'id';
-  static String title = 'title';
-  static String url = 'url';
-}
-
 class BookmarkLocalDatasource extends BookmarkDataSource {
   final BookmarkLocalDBService localDB;
   BookmarkLocalDatasource(this.localDB);
@@ -61,7 +55,7 @@ class BookmarkLocalDatasource extends BookmarkDataSource {
     final Database? db = await localDB.database;
     try {
       return Right(await db!.delete(BookmarkLocalDBService.table,
-          where: "id = ?", whereArgs: [bookmark.id]));
+          where: WHERE_ID, whereArgs: [bookmark.id]));
     } catch (e) {
       return Left(e);
     }
@@ -77,7 +71,7 @@ class BookmarkLocalDatasource extends BookmarkDataSource {
         BookmarkColumns.url: bookmark.url,
       };
       return Right(await db!.update(BookmarkLocalDBService.table, row,
-          where: "id = ?", whereArgs: [bookmark.id]));
+          where: WHERE_ID, whereArgs: [bookmark.id]));
     } catch (e) {
       return Left(e);
     }

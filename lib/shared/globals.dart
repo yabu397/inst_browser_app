@@ -13,6 +13,7 @@ const String DATABASE_NAME = 'local_storage.db';
 const String BOOKMARK_TABLE_NAME = 'bookmarks';
 const String BOOKMARK_LOCAL_STRAGE_KEY = 'bookmark';
 const String BOOKMARK_DEFAULT_TITLE = 'タイトル';
+const String WHERE_ID = 'id = ?';
 
 class Mode {
   static const String regist = 'REGIST';
@@ -42,4 +43,10 @@ class Style {
 class Limits {
   static const int maxUrlLength = 100;
   static const int maxBookmarkCount = 20;
+}
+
+class BookmarkColumns {
+  static String id = 'id';
+  static String title = 'title';
+  static String url = 'url';
 }
