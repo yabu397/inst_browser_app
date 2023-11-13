@@ -21,6 +21,13 @@ class BookmarkList extends ConsumerStatefulWidget {
 class _BookmarkListState extends ConsumerState<BookmarkList> {
   late RelativeRect position;
 
+  @override
+  void initState() {
+    super.initState();
+    final notifier = ref.read(bookmarkNotifierProvider.notifier);
+    notifier.fetchBookmarks(context);
+  }
+
   void _handleTapDown(TapDownDetails details) {
     setState(() {
       position = RelativeRect.fromLTRB(
@@ -54,8 +61,7 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
               );
             });
       } else if (value == 2) {
-        await notifier.deleteBookmark(bookmark);
-        await notifier.fetchBookmarks();
+        await notifier.deleteBookmark(bookmark, context);
       }
     });
   }

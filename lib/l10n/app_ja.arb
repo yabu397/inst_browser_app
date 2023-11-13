@@ -17,7 +17,7 @@
 
     "goBackButton": "< 戻る",
     "goForwardButton": "進む >",
-    
+
     "invalidUrl": "{url}は無効なURLです",
     "@invalidUrl": {
         "placeholders": {
@@ -48,6 +48,12 @@
     "@failureRegistration": {
         "placeholders": {
             "title": {"type": "String"}
+        }
+    },
+    "errorMessage": "エラーが発生しました/n${error}",
+    "@errorMessage": {
+        "placeholders": {
+            "error": {"type": "String"}
         }
     }
 }

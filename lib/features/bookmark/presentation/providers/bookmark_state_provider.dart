@@ -6,5 +6,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final bookmarkNotifierProvider =
     StateNotifierProvider<BookmarkNotifier, BookmarkState>((ref) {
   final repository = ref.watch(bookmarkLocalRepositoryProvider);
-  return BookmarkNotifier(repository)..fetchBookmarks();
+  return BookmarkNotifier(repository);
 });
