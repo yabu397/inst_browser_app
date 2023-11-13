@@ -41,7 +41,7 @@ class Style {
 }
 
 class Limits {
-  static const int maxUrlLength = 100;
+  static const int maxUrlLength = 200;
   static const int maxBookmarkCount = 20;
 }
 

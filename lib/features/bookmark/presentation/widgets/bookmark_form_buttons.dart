@@ -60,15 +60,17 @@ class BookmarkFormButtons extends ConsumerWidget {
                         break;
                       }
                       if (formKey.currentState!.validate()) {
-                        notifier.insertBookmark(state.bookmark, context);
+                        notifier
+                            .insertBookmark(state.bookmark, context)
+                            .then((value) => Navigator.of(context).pop());
                       }
-                      Navigator.of(context).pop();
                       break;
                     case Mode.update:
                       if (formKey.currentState!.validate()) {
-                        notifier.updateBookmark(state.bookmark, context);
+                        notifier
+                            .updateBookmark(state.bookmark, context)
+                            .then((value) => Navigator.of(context).pop());
                       }
-                      Navigator.of(context).pop();
                       break;
                   }
                 },
