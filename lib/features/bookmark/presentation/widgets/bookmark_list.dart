@@ -60,6 +60,7 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
                 mode: Mode.update,
               );
             });
+        notifier.resetState();
       } else if (value == 2) {
         await notifier.deleteBookmark(bookmark, context);
       }

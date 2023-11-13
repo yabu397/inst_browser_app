@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_project/features/bookmark/presentation/providers/bookmark_state_provider.dart';
 import 'package:flutter_project/features/bookmark/presentation/widgets/bookmark_list.dart';
 import 'package:flutter_project/features/bookmark/presentation/widgets/bookmark_form_dialog.dart';
 import 'package:flutter_project/shared/globals.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class BookmarkScreen extends StatelessWidget {
+class BookmarkScreen extends ConsumerStatefulWidget {
   const BookmarkScreen({Key? key}) : super(key: key);
 
+  @override
+  ConsumerState<BookmarkScreen> createState() => _BookmarkScreenState();
+}
+
+class _BookmarkScreenState extends ConsumerState<BookmarkScreen> {
   void _openBookmarkFormDialog(BuildContext context) async {
+    final notifier = ref.read(bookmarkNotifierProvider.notifier);
     await showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -15,6 +23,7 @@ class BookmarkScreen extends StatelessWidget {
             mode: Mode.regist,
           );
         });
+    notifier.resetState();
   }
 
   @override
