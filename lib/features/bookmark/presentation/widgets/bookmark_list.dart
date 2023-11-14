@@ -91,6 +91,7 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
                       NavigationDelegate(onUrlChange: (_) async {
                     notifier.setCanState();
                   }))
+                  ..setJavaScriptMode(JavaScriptMode.unrestricted)
                   ..loadRequest(
                     Uri.parse(bookmark.url ?? ''),
                   ));
