@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project/shared/globals.dart';
 
 class BrowserButton extends StatelessWidget {
-  const BrowserButton({Key? key, this.text, this.onPressed}) : super(key: key);
+  const BrowserButton({Key? key, required this.text, required this.onPressed})
+      : super(key: key);
 
-  final String? text;
-  final Function()? onPressed;
+  final String text;
+  final VoidCallback? onPressed;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -19,7 +20,7 @@ class BrowserButton extends StatelessWidget {
           ),
           onPressed: onPressed,
           child: Text(
-            text ?? '',
+            text,
             style: Style.boldStyle.copyWith(fontSize: Sizing.labelSize),
           ),
         ),

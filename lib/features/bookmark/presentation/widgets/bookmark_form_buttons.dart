@@ -15,7 +15,7 @@ class BookmarkFormButtons extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(bookmarkNotifierProvider);
-    final notifier = ref.read(bookmarkNotifierProvider.notifier);
+    final notifier = ref.watch(bookmarkNotifierProvider.notifier);
     return Padding(
       padding: const EdgeInsets.only(
         top: Sizing.paddingSize,

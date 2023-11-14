@@ -70,7 +70,7 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(bookmarkNotifierProvider);
-    final notifier = ref.read(browserkNotifierProvider.notifier);
+    final notifier = ref.watch(browserkNotifierProvider.notifier);
     final height = MediaQuery.of(context).size.height;
     return ListView.builder(
       itemCount: state.bookmarkList.length,
@@ -91,10 +91,11 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
                       NavigationDelegate(onUrlChange: (_) async {
                     notifier.setCanState();
                   }))
+                  ..setJavaScriptMode(JavaScriptMode.unrestricted)
                   ..loadRequest(
                     Uri.parse(bookmark.url ?? ''),
                   ));
-                context.go(Locations.browser.path);
+                context.push(Locations.browser.path);
               } catch (e) {
                 ScaffoldMessenger.of(context).showSnackBar(CstSnackBar(context,
                     text: L10n.of(context).invalidUrl(bookmark.url ?? '')));

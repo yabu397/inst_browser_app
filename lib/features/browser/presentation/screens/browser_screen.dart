@@ -12,9 +12,9 @@ class BrowserScreen extends ConsumerWidget {
     final state = ref.watch(browserkNotifierProvider);
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
           children: [
             Expanded(
               child: WebViewWidget(

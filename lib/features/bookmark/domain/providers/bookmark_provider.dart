@@ -9,11 +9,11 @@ final bookmarkDataSourceProvider =
   (_, localDB) => BookmarkLocalDatasource(localDB),
 );
 
-final bookmarkLocalRepositoryProvider = Provider<BookmarkRepository>((ref) {
+final bookmarkRepositoryProvider = Provider<BookmarkRepository>((ref) {
   final localDB = BookmarkLocalDBService.instance;
   final datasource = ref.watch(bookmarkDataSourceProvider(localDB));
 
-  final respository = BookmarkRepositoryImpl(datasource);
+  final repository = BookmarkRepositoryImpl(datasource);
 
-  return respository;
+  return repository;
 });
