@@ -23,8 +23,7 @@ class BrowserButtonBar extends ConsumerWidget {
       BrowserButton(
           text: L10n.of(context).reload, onPressed: () => {notifier.reload()}),
       BrowserButton(
-          text: L10n.of(context).end,
-          onPressed: () => {context.go(Locations.home.path)})
+          text: L10n.of(context).end, onPressed: () => {context.pop()})
     ]);
   }
 }

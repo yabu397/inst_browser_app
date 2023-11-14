@@ -94,7 +94,7 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
                   ..loadRequest(
                     Uri.parse(bookmark.url ?? ''),
                   ));
-                context.go(Locations.browser.path);
+                context.push(Locations.browser.path);
               } catch (e) {
                 ScaffoldMessenger.of(context).showSnackBar(CstSnackBar(context,
                     text: L10n.of(context).invalidUrl(bookmark.url ?? '')));
