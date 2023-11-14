@@ -6,15 +6,10 @@ import 'package:flutter_project/features/bookmark/presentation/widgets/bookmark_
 import 'package:flutter_project/shared/globals.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class BookmarkScreen extends ConsumerStatefulWidget {
+class BookmarkScreen extends ConsumerWidget {
   const BookmarkScreen({Key? key}) : super(key: key);
 
-  @override
-  ConsumerState<BookmarkScreen> createState() => _BookmarkScreenState();
-}
-
-class _BookmarkScreenState extends ConsumerState<BookmarkScreen> {
-  void _openBookmarkFormDialog(BuildContext context) async {
+  void _openBookmarkFormDialog(BuildContext context, WidgetRef ref) async {
     final notifier = ref.read(bookmarkNotifierProvider.notifier);
     await showDialog(
         context: context,
@@ -27,7 +22,7 @@ class _BookmarkScreenState extends ConsumerState<BookmarkScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(L10n.of(context).bookmarkListTitle,
@@ -38,7 +33,7 @@ class _BookmarkScreenState extends ConsumerState<BookmarkScreen> {
       ),
       body: const BookmarkList(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _openBookmarkFormDialog(context),
+        onPressed: () => _openBookmarkFormDialog(context, ref),
         tooltip: L10n.of(context).bookmarkRegistDialogTitle,
         child: const Icon(Icons.add),
       ),
