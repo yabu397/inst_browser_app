@@ -16,20 +16,22 @@ class BookmarkFormDialog extends StatelessWidget {
         padding: Sizing.defaultInsets,
         child: Form(
           key: _formKey,
-          child: Column(mainAxisSize: MainAxisSize.min, children: [
-            Text(
-                switch (mode) {
-                  Mode.regist => L10n.of(context).bookmarkRegistDialogTitle,
-                  Mode.update => L10n.of(context).bookmarkEditDialogTitle,
-                  _ => ''
-                },
-                style: Style.boldStyle.copyWith(fontSize: Sizing.titleSize)),
-            const BookmarkFormBdy(),
-            BookmarkFormButtons(
-              mode: mode,
-              formKey: _formKey,
-            ),
-          ]),
+          child: SingleChildScrollView(
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              Text(
+                  switch (mode) {
+                    Mode.regist => L10n.of(context).bookmarkRegistDialogTitle,
+                    Mode.update => L10n.of(context).bookmarkEditDialogTitle,
+                    _ => ''
+                  },
+                  style: Style.boldStyle.copyWith(fontSize: Sizing.titleSize)),
+              const BookmarkFormBdy(),
+              BookmarkFormButtons(
+                mode: mode,
+                formKey: _formKey,
+              ),
+            ]),
+          ),
         ),
       ),
     );
