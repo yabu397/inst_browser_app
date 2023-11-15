@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/features/bookmark/domain/providers/bookmark_provider.dart';
-import 'package:flutter_project/features/bookmark/domain/repositories/bookmark_repository.dart';
 import 'package:flutter_project/features/bookmark/presentation/providers/bookmark_state.dart';
 import 'package:flutter_project/shared/models/bookmark_model.dart';
 import 'package:flutter_project/shared/widgets/cst_snack_bar.dart';
@@ -12,11 +11,8 @@ final bookmarkNotifierProvider =
     NotifierProvider<BookmarkNotifier, BookmarkState>(BookmarkNotifier.new);
 
 class BookmarkNotifier extends Notifier<BookmarkState> {
-  late final BookmarkRepository bookmarkRepository;
-
   @override
   BookmarkState build() {
-    bookmarkRepository = ref.read(bookmarkRepositoryProvider);
     return const BookmarkState.initial();
   }
 
@@ -46,7 +42,8 @@ class BookmarkNotifier extends Notifier<BookmarkState> {
   }
 
   Future<void> insertBookmark(Bookmark bookmark, BuildContext context) async {
-    final response = await bookmarkRepository.insertBookmark(bookmark);
+    final response =
+        await ref.read(bookmarkRepositoryProvider).insertBookmark(bookmark);
     response.fold((failure) {
       ScaffoldMessenger.of(context).showSnackBar(CstSnackBar(
         context,
@@ -65,20 +62,27 @@ class BookmarkNotifier extends Notifier<BookmarkState> {
   }
 
   Future<void> fetchBookmarks(BuildContext context) async {
-    await bookmarkRepository
+    await ref
+        .read(bookmarkRepositoryProvider)
         .fetchBookmarks()
         .then((response) => updateStateFromResponse(response, context));
   }
 
   Future<void> deleteBookmark(Bookmark bookmark, BuildContext context) async {
-    await bookmarkRepository.deleteBookmark(bookmark).then((response) async {
+    await ref
+        .read(bookmarkRepositoryProvider)
+        .deleteBookmark(bookmark)
+        .then((response) async {
       handleResponse(response, context);
       fetchBookmarks(context);
     });
   }
 
   Future<void> updateBookmark(Bookmark bookmark, BuildContext context) async {
-    await bookmarkRepository.updateBookmark(bookmark).then((response) async {
+    await ref
+        .read(bookmarkRepositoryProvider)
+        .updateBookmark(bookmark)
+        .then((response) async {
       handleResponse(response, context);
       fetchBookmarks(context);
     });
