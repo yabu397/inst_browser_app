@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_project/features/bookmark/presentation/widgets/bookmark_form_dialog.dart';
@@ -76,11 +78,13 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
       itemCount: state.bookmarkList.length,
       itemBuilder: (context, index) {
         final bookmark = state.bookmarkList[index];
-        return Card(
-          clipBehavior: Clip.hardEdge,
+        return Container(
           margin: const EdgeInsets.all(0.0),
-          shape: const RoundedRectangleBorder(
-            side: BorderSide(color: Colors.black12),
+          decoration: const BoxDecoration(
+            border: Border(
+              top: BorderSide(color: Colors.black26),
+              bottom: BorderSide(color: Colors.black26),
+            ),
           ),
           child: InkWell(
             onTap: () {
@@ -106,7 +110,7 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
             },
             onTapDown: _handleTapDown,
             child: SizedBox(
-              height: height * 0.1,
+              height: max(height * 0.1, 80),
               child: Padding(
                 padding: Sizing.defaultInsets,
                 child: Column(
