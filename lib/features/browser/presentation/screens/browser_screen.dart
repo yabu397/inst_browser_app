@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_project/features/browser/presentation/providers/browser_state_provider.dart';
 import 'package:flutter_project/features/browser/presentation/widgets/browser_button_bar.dart';
@@ -25,7 +27,7 @@ class BrowserScreen extends ConsumerWidget {
               children: [
                 SizedBox(
                     width: width,
-                    height: height * 0.1,
+                    height: max(height * 0.1, 80),
                     child: const BrowserButtonBar())
               ],
             )
