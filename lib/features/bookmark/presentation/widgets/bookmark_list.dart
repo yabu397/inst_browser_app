@@ -78,37 +78,37 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
       itemCount: state.bookmarkList.length,
       itemBuilder: (context, index) {
         final bookmark = state.bookmarkList[index];
-        return Container(
-          margin: const EdgeInsets.all(0.0),
-          decoration: const BoxDecoration(
-            border: Border(
-              top: BorderSide(color: Colors.black26),
-              bottom: BorderSide(color: Colors.black26),
+        return InkWell(
+          onTap: () {
+            try {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              notifier.setController(WebViewController()
+                ..setNavigationDelegate(
+                    NavigationDelegate(onUrlChange: (_) async {
+                  notifier.setCanState();
+                }))
+                ..setJavaScriptMode(JavaScriptMode.unrestricted)
+                ..loadRequest(
+                  Uri.parse(bookmark.url ?? ''),
+                ));
+              context.push(Locations.browser.path);
+            } catch (e) {
+              ScaffoldMessenger.of(context).showSnackBar(CstSnackBar(context,
+                  text: L10n.of(context).invalidUrl(bookmark.url ?? '')));
+            }
+          },
+          onLongPress: () {
+            _showMenu(context, bookmark);
+          },
+          onTapDown: _handleTapDown,
+          child: Container(
+            margin: const EdgeInsets.all(0.0),
+            decoration: const BoxDecoration(
+              border: Border(
+                top: BorderSide(color: Colors.black26),
+                bottom: BorderSide(color: Colors.black26),
+              ),
             ),
-          ),
-          child: InkWell(
-            onTap: () {
-              try {
-                ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                notifier.setController(WebViewController()
-                  ..setNavigationDelegate(
-                      NavigationDelegate(onUrlChange: (_) async {
-                    notifier.setCanState();
-                  }))
-                  ..setJavaScriptMode(JavaScriptMode.unrestricted)
-                  ..loadRequest(
-                    Uri.parse(bookmark.url ?? ''),
-                  ));
-                context.push(Locations.browser.path);
-              } catch (e) {
-                ScaffoldMessenger.of(context).showSnackBar(CstSnackBar(context,
-                    text: L10n.of(context).invalidUrl(bookmark.url ?? '')));
-              }
-            },
-            onLongPress: () {
-              _showMenu(context, bookmark);
-            },
-            onTapDown: _handleTapDown,
             child: SizedBox(
               height: max(height * 0.1, 80),
               child: Padding(
