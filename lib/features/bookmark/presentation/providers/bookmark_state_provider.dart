@@ -1,19 +1,19 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project/features/bookmark/domain/providers/bookmark_provider.dart';
+import 'package:flutter_project/features/bookmark/domain/bookmark_provider.dart';
 import 'package:flutter_project/features/bookmark/presentation/providers/bookmark_state.dart';
 import 'package:flutter_project/shared/models/bookmark_model.dart';
 import 'package:flutter_project/shared/widgets/cst_snack_bar.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final bookmarkNotifierProvider =
-    NotifierProvider<BookmarkNotifier, BookmarkState>(BookmarkNotifier.new);
+part 'bookmark_state_provider.g.dart';
 
-class BookmarkNotifier extends Notifier<BookmarkState> {
+@riverpod
+class BookmarkState extends _$BookmarkState {
   @override
-  BookmarkState build() {
-    return const BookmarkState.initial();
+  BookmarkModel build() {
+    return const BookmarkModel.initial();
   }
 
   Future<void> setTitle(String value) async {

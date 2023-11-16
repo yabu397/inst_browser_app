@@ -10,7 +10,7 @@ class BookmarkScreen extends ConsumerWidget {
   const BookmarkScreen({Key? key}) : super(key: key);
 
   void _openBookmarkFormDialog(BuildContext context, WidgetRef ref) async {
-    final notifier = ref.read(bookmarkNotifierProvider.notifier);
+    final notifier = ref.read(bookmarkStateProvider.notifier);
     await showDialog(
         context: context,
         builder: (BuildContext context) {

@@ -26,7 +26,7 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
   @override
   void initState() {
     super.initState();
-    final notifier = ref.read(bookmarkNotifierProvider.notifier);
+    final notifier = ref.read(bookmarkStateProvider.notifier);
     notifier.fetchBookmarks(context);
   }
 
@@ -38,7 +38,7 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
   }
 
   void _showMenu(BuildContext context, Bookmark bookmark) {
-    final notifier = ref.read(bookmarkNotifierProvider.notifier);
+    final notifier = ref.read(bookmarkStateProvider.notifier);
     showMenu(
       context: context,
       position: position,
@@ -71,7 +71,7 @@ class _BookmarkListState extends ConsumerState<BookmarkList> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(bookmarkNotifierProvider);
+    final state = ref.watch(bookmarkStateProvider);
     final notifier = ref.watch(browserkNotifierProvider.notifier);
     final height = MediaQuery.of(context).size.height;
     return ListView.builder(
