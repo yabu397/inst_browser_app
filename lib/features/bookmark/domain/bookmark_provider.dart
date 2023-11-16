@@ -1,5 +1,5 @@
-import 'package:flutter_project/features/bookmark_g/data/bookmark_local_datasource.dart';
-import 'package:flutter_project/features/bookmark_g/data/bookmark_repository.dart';
+import 'package:flutter_project/features/bookmark/data/bookmark_local_datasource.dart';
+import 'package:flutter_project/features/bookmark/data/bookmark_repository.dart';
 
 // final bookmarkDataSourceProvider =
 //     Provider.family<BookmarkDataSource, BookmarkLocalDBService>(

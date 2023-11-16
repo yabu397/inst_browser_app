@@ -11,8 +11,8 @@ class BookmarkFormBdy extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(bookmarkNotifierProvider);
-    final notifier = ref.watch(bookmarkNotifierProvider.notifier);
+    final state = ref.watch(bookmarkStateProvider);
+    final notifier = ref.watch(bookmarkStateProvider.notifier);
     return Column(
       children: [
         CstTextFormField(
